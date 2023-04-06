@@ -1,0 +1,39 @@
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 5
+    separator = ""
+}
+
+order += "disk/"
+order += "cpu_usage"
+order += "memory"
+order += "battery 0"
+order += "volume master"
+order += "tztime paris"
+
+cpu_usage {
+	format = "CPU %usage"
+}
+
+memory {
+		format = "MEM %percentage_used"
+}
+
+battery 0 {
+    format = "%status %percentage"
+ }
+
+tztime paris {
+        format = "%time"
+        format_time = "%A %d %B %Y %H:%M"
+        timezone = "Europe/Paris"
+}
+
+volume master {
+        format = "VOL %volume"
+        format_muted = "VOL MUTE"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
