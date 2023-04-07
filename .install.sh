@@ -25,13 +25,13 @@ read nothing
 sudo apt install git gcc g++ zsh curl vim feh light npm flameshot pulseaudio pulseaudio-utils ripgrep i3 libreoffice python3-pip firefox apache2 stow -y
 
 #Nodejs
-curl -sL https://deb.nodesource.com/setup_18.13 -o nodesource_setup.sh
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 bash nodesource_setup.sh
-sudo apt install nodejs
+sudo apt install -y nodejs
 
 # auto-cpufreq
 sudo snap install auto-cpufreq
-auto-cpufreq --install
+sudo auto-cpufreq --install
 
 # snap install
 sudo snap install discord
@@ -70,6 +70,6 @@ sudo chmod 755 /etc/X11/xorg.conf.d/90-touchpad.conf
 
 # .dotfiles loading
 cd ~/.dotfiles
-stow */
+stow -R */
 
 reboot
