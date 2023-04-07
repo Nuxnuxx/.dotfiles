@@ -4,7 +4,7 @@
 sudo apt update -y
 sudo apt upgrade -y
 
-gnome-font-viewer Caskaydia Cove Nerd Font Complete Regular.otf
+gnome-font-viewer Caskaydia\ Cove\ Nerd\ Font\ Complete\ Regular.otf
 read nothing
 
 # Github
