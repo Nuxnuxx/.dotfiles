@@ -35,7 +35,6 @@ sudo apt install git gcc g++ zsh vim feh light flameshot pulseaudio pulseaudio-u
 
 # auto-cpufreq
 sudo snap install auto-cpufreq
-sudo auto-cpufreq --install
 
 # snap install
 sudo snap install discord
