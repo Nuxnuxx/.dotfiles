@@ -4,24 +4,30 @@
 sudo apt update -y
 sudo apt upgrade -y
 
+echo "Click Download"
 gnome-font-viewer Caskaydia\ Cove\ Nerd\ Font\ Complete\ Regular.otf
-read nothing
+read -r nothing
 
 # Github
-echo "Enter Github address mail : "
-read GitMail
-echo "Enter Github name : "
-read GitName
+if [ ! -f ~/.ssh/id_ed25519 ]; then
+    echo "Enter Github address mail : "
+    read -r GitMail
+    echo "Enter Github name : "
+    read -r GitName
 
-echo "Press only Enter"
-ssh-keygen -t ed25519 -C "$GitMail"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
+    echo "Press only Enter"
+    ssh-keygen -t ed25519 -C "$GitMail"
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ed25519
 
-echo "Go to Github -> Settings -> SSH and GPG keys
--> [Paste the key] -> Add SSH key :"
-sudo cat ~/.ssh/id_ed25519.pub
-read nothing
+    echo "Go to Github -> Settings -> SSH and GPG keys
+    -> [Paste the key] -> Add SSH key :"
+    cat ~/.ssh/id_ed25519.pub
+    read -r nothing
+
+else
+    echo "SSH key already exists, skipping key creation."
+fi
 
 sudo apt install -y curl
 #Nodejs
@@ -71,10 +77,14 @@ EndSection' >> /etc/X11/xorg.conf.d/90-touchpad.conf
 sudo chmod 755 /etc/X11/xorg.conf.d/90-touchpad.conf
 
 
+# adopt to delete the current config and git reset because adopt take the real 
+# config to import it in here so it reset and after i really stow
 stow --adopt */
 git reset --hard
 stow */
 
 sudo apt autoremove -y
 
+echo "Gonna reboot"
+read -r saucisse
 reboot
