@@ -5,7 +5,6 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # Github
-cd ~
 echo "Enter Github address mail : "
 read GitMail
 echo "Enter Github name : "
@@ -68,7 +67,6 @@ sudo chmod 755 /etc/X11/xorg.conf.d/90-touchpad.conf
 
 
 # Delete contents of target directories before stowing
-cd ~/.dotfiles
 target_directories=($(find . -mindepth 2 -maxdepth 2 -type f -printf '%h\n' | sort -u))
 
 # Delete the contents of the target directories
