@@ -4,7 +4,7 @@
 sudo apt update -y
 sudo apt upgrade -y
 
-echo "Open Nautilus in .dotiles and install Caskaydia Font"
+gnome-font-viewer Caskaydia Cove Nerd Font Complete Regular.otf
 read nothing
 
 # Github
@@ -87,5 +87,5 @@ done
 
 
 stow -R */
-
+sudo apt autoremove
 reboot
