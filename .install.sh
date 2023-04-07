@@ -69,7 +69,7 @@ sudo chmod 755 /etc/X11/xorg.conf.d/90-touchpad.conf
 
 # Delete contents of target directories before stowing
 cd ~/.dotfiles
-target_directories=($(find . -mindepth 1 -maxdepth 1 -type d -printf '%P\n'))
+target_directories=($(find . -mindepth 2 -maxdepth 2 -type f -printf '%h\n' | sort -u))
 
 # Delete the contents of the target directories
 echo "Deleting contents of target directories"
