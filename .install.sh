@@ -68,8 +68,19 @@ EndSection' >> /etc/X11/xorg.conf.d/90-touchpad.conf
 sudo chmod 755 /etc/X11/xorg.conf.d/90-touchpad.conf
 
 
-# .dotfiles loading
+# Delete contents of target directories before stowing
 cd ~/.dotfiles
+target_directories=($(find . -mindepth 1 -maxdepth 1 -type d -printf '%P\n'))
+
+# Delete the contents of the target directories
+echo "Deleting contents of target directories"
+for dir in "${target_directories[@]}"; do
+  real_dir=$(find "$dir" -type f | head -1 | sed -e "s|^\./||" -e "s|/[^/]*$||")
+  if [ -n "$real_dir" ] && [ -d "$HOME/$real_dir" ]; then
+    find "$HOME/$real_dir" -mindepth 1 -delete
+  fi
+done
+
 stow -R */
 
 reboot
