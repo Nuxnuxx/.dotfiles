@@ -23,13 +23,15 @@ echo "Go to Github -> Settings -> SSH and GPG keys
 sudo cat ~/.ssh/id_ed25519.pub
 read nothing
 
-# Install global
-sudo apt install git gcc g++ zsh curl vim feh light flameshot pulseaudio pulseaudio-utils ripgrep i3 libreoffice python3-pip firefox apache2 stow -y
-
+sudo apt install -y curl
 #Nodejs
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt install -y nodejs
 sudo apt install -y npm
+
+# Install global
+sudo apt install git gcc g++ zsh vim feh light flameshot pulseaudio pulseaudio-utils ripgrep i3 libreoffice python3-pip firefox apache2 stow -y
+
 
 # auto-cpufreq
 sudo snap install auto-cpufreq
