@@ -74,11 +74,20 @@ target_directories=($(find . -mindepth 1 -maxdepth 1 -type d -printf '%P\n'))
 # Delete the contents of the target directories
 echo "Deleting contents of target directories"
 for dir in "${target_directories[@]}"; do
-  real_dir=$(find "$dir" -type f | head -1 | sed -e "s|^\./||" -e "s|/[^/]*$||")
-  if [ -n "$real_dir" ] && [ -d "$HOME/$real_dir" ]; then
-    find "$HOME/$real_dir" -mindepth 1 -delete
+  first_file=$(find "$dir" -type f | head -1)
+  if [ -n "$first_file" ]; then
+    real_dir=$(echo "$first_file" | sed -e "s|^\./||" -e "s|/[^/]*$||")
+    if [ -d "$HOME/$real_dir" ]; then
+      find "$HOME/$real_dir" -mindepth 1 -delete
+    fi
   fi
 done
+
+
+#Font
+mkdir -p ~/.local/share/fonts
+cp ~/.dotfiles/Caskaydia\ Cove\ Nerd\ Font\ Complete\ Regular.otf ~/.local/share/fonts/
+fc-cache -f -v
 
 stow -R */
 
