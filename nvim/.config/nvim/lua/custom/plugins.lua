@@ -28,6 +28,7 @@ local plugins = {
         "vue-language-server",
         "prettier",
         "rustfmt",
+        "shellcheck",
       },
     },
   }
