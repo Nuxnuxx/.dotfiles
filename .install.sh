@@ -72,22 +72,10 @@ EndSection' >> /etc/X11/xorg.conf.d/90-touchpad.conf
 sudo chmod 755 /etc/X11/xorg.conf.d/90-touchpad.conf
 
 
-# Delete contents of target directories before stowing
-target_directories=($(find . -mindepth 2 -maxdepth 2 -type f -printf '%h\n' | sort -u))
+stow --adopt */
+git reset --hard
+stow */
 
-# Delete the contents of the target directories
-echo "Deleting contents of target directories"
-for dir in "${target_directories[@]}"; do
-  first_file=$(find "$dir" -type f | head -1)
-  if [ -n "$first_file" ]; then
-    real_dir=$(echo "$first_file" | sed -e "s|^\./||" -e "s|/[^/]*$||")
-    if [ -d "$HOME/$real_dir" ]; then
-      find "$HOME/$real_dir" -mindepth 1 -delete
-    fi
-  fi
-done
-
-
-stow -R */
 sudo apt autoremove
+
 reboot
