@@ -4,6 +4,9 @@
 sudo apt update -y
 sudo apt upgrade -y
 
+echo "Open Nautilus in .dotiles and install Caskaydia Font"
+read nothing
+
 # Github
 echo "Enter Github address mail : "
 read GitMail
@@ -25,7 +28,8 @@ sudo apt install git gcc g++ zsh curl vim feh light flameshot pulseaudio pulseau
 
 #Nodejs
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs npm
+sudo apt install -y nodejs
+sudo apt install -y npm
 
 # auto-cpufreq
 sudo snap install auto-cpufreq
@@ -45,12 +49,13 @@ sudo dpkg -i packages-microsoft-prod.deb
 sudo apt update
 sudo apt-get install -y dotnet-sdk-7.0
 sudo apt-get install -y aspnetcore-runtime-7.0
+sudo rm packages-microsoft-prod.deb
 
 #Oh-My-Zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/plugins/zsh-autosuggestions
 sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/plugins/zsh-syntax-highlighting
-sudo chsh -s /bin/zsh
+sudo git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH/plugins/zsh-vi-mode
 
 #Keyboard and Mouse
 sudo mkdir -p /etc/X11/xorg.conf.d
@@ -80,11 +85,6 @@ for dir in "${target_directories[@]}"; do
   fi
 done
 
-
-#Font
-mkdir -p ~/.local/share/fonts
-cp ~/.dotfiles/Caskaydia\ Cove\ Nerd\ Font\ Complete\ Regular.otf ~/.local/share/fonts/
-fc-cache -f -v
 
 stow -R */
 
