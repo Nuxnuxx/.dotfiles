@@ -22,12 +22,11 @@ sudo cat ~/.ssh/id_ed25519.pub
 read nothing
 
 # Install global
-sudo apt install git gcc g++ zsh curl vim feh light npm flameshot pulseaudio pulseaudio-utils ripgrep i3 libreoffice python3-pip firefox apache2 stow -y
+sudo apt install git gcc g++ zsh curl vim feh light flameshot pulseaudio pulseaudio-utils ripgrep i3 libreoffice python3-pip firefox apache2 stow -y
 
 #Nodejs
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-bash nodesource_setup.sh
-sudo apt install -y nodejs
+sudo apt install -y nodejs npm
 
 # auto-cpufreq
 sudo snap install auto-cpufreq

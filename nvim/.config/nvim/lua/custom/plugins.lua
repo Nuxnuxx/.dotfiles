@@ -19,9 +19,8 @@ local plugins = {
     opts = {
       ensure_installed = {
         "rust-analyzer",
-        "phpactor",
+        -- "phpactor",
         "typescript-language-server",
-        "html",
         "emmet_ls",
         "css-lsp",
         "json-lsp",
