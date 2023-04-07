@@ -23,6 +23,7 @@ local plugins = {
         "typescript-language-server",
         "emmet_ls",
         "css-lsp",
+        "html-lsp",
         "json-lsp",
         "vue-language-server",
         "prettier",
