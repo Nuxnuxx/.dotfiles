@@ -76,6 +76,6 @@ stow --adopt */
 git reset --hard
 stow */
 
-sudo apt autoremove
+sudo apt autoremove -y
 
 reboot
