@@ -26,6 +26,8 @@ local plugins = {
         "css-lsp",
         "json-lsp",
         "vue-language-server",
+        "prettier",
+        "rustfmt",
       },
     },
   }
