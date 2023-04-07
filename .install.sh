@@ -1,7 +1,8 @@
-# Basic 
-sudo apt update
-sudo apt upgrade
+#!/bin/bash
 
+# Basic 
+sudo apt update -y
+sudo apt upgrade -y
 
 # Github
 cd ~
@@ -21,20 +22,24 @@ sudo cat ~/.ssh/id_ed25519.pub
 read nothing
 
 # Install global
-sudo apt install git gcc g++ zsh curl vim feh light npm flameshot pulseaudio pulseaudio-utils ripgrep i3 libreoffice python3-pip python2 firefox apache2 stow -y
+sudo apt install git gcc g++ zsh curl vim feh light npm flameshot pulseaudio pulseaudio-utils ripgrep i3 libreoffice python3-pip firefox apache2 stow -y
 
+#Nodejs
 curl -sL https://deb.nodesource.com/setup_18.13 -o nodesource_setup.sh
 bash nodesource_setup.sh
-
 sudo apt install nodejs
 
+# auto-cpufreq
+sudo snap install auto-cpufreq
+auto-cpufreq --install
+
+# snap install
 sudo snap install discord
 sudo snap install nvim --classic
 
-
+# Git config final
 git config --global user.mail "$GitMail"
 git config --global user.name "$GitName"
-
 
 #Dotnet
 wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
@@ -64,7 +69,7 @@ sudo chmod 755 /etc/X11/xorg.conf.d/90-touchpad.conf
 
 
 # .dotfiles loading
-cd .dotfiles
+cd ~/.dotfiles
 stow */
 
 reboot
