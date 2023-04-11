@@ -36,7 +36,7 @@ sudo apt install -y nodejs
 sudo apt install -y npm
 
 # Install global
-sudo apt install git gcc g++ zsh vim feh light flameshot pulseaudio pulseaudio-utils ripgrep i3 libreoffice python3-pip firefox apache2 stow -y
+sudo apt install git gcc g++ zsh vim feh light flameshot pulseaudio pulseaudio-utils ripgrep i3 libreoffice python3-pip firefox apache2 stow filezilla -y
 
 
 # auto-cpufreq
