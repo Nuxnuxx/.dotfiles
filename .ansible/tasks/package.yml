@@ -1,0 +1,44 @@
+- name: install essential package apt
+  apt: 
+    name: 
+    - gnome-font-viewer 
+    - curl 
+    - wget 
+    - git 
+    - snapd 
+    - stow 
+    - nodejs 
+    - npm 
+    - git 
+    - gcc 
+    - g++ 
+    - zsh 
+    - vim 
+    - feh 
+    - light 
+    - flameshot 
+    - pulseaudio 
+    - pulseaudio-utils 
+    - ripgrep 
+    - i3 
+    - libreoffice 
+    - python3-pip 
+    - google-chrome 
+    - stow
+  tags:
+    - package
+
+- name: put font on parameters
+  shell: gnome-font-viewer Caskaydia\ Cove\ Nerd\ Font\ Complete\ Regular.otf
+  tags:
+    - package
+
+- name: install essential package snap
+  community.general.snap:
+    name:
+      - auto-cpufreq
+      - discord
+      - nvim
+    classic: true
+  tags:
+    - package
