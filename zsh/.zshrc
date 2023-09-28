@@ -74,7 +74,6 @@ plugins=(zsh-syntax-highlighting zsh-autosuggestions zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -90,13 +89,9 @@ bindkey '^ ' autosuggest-accept
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-#
-alias vim="nvim"
+# alias vim="nvim"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 export EDITOR=nvim
-export BROWSER=firefox
-
-bindkey '^ ' autosuggest-accept
+export BROWSER=google-chrome
