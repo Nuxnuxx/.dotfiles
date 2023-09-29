@@ -1,0 +1,6 @@
+XTerm*background:   black
+XTerm*foreground:   white
+XTerm*renderFont: true
+XTerm*faceName: CaskaydiaCove Nerd Font
+XTerm*faceSize: 14.5
+Xterm*selectToClipboard: true
