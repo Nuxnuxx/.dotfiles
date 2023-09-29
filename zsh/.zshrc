@@ -75,6 +75,7 @@ plugins=(zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
 bindkey -s '^f' "tmux-sessionizer\n"
+bindkey -s '^h' "cht.sh\n"
 # alias vim="nvim"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
