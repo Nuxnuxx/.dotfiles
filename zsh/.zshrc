@@ -76,9 +76,21 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
 bindkey -s '^f' "tmux-sessionizer\n"
 bindkey -s '^h' "cht.sh\n"
+bindkey -s '^gl' "chatgpt.sh\n"
+bindkey -s '^gh' "chatgpt.sh "4"\n"
 # alias vim="nvim"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export EDITOR=nvim
 export BROWSER=google-chrome
+
+# bun completions
+[ -s "/home/gaetan/.bun/_bun" ] && source "/home/gaetan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# chatgpt
+export OPENAI_KEY="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"
