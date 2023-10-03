@@ -76,12 +76,10 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
 bindkey -s '^f' "tmux-sessionizer\n"
 bindkey -s '^h' "cht.sh\n"
-bindkey -s '^gl' "chatgpt.sh\n"
-bindkey -s '^gh' "chatgpt.sh "4"\n"
-# alias vim="nvim"
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+bindkey -s '^k' "chatgpt.sh\n"
+bindkey -s '^k4' "chatgpt.sh "4"\n"
+bindkey -s '^b' "branch.sh\n"
+
 export EDITOR=nvim
 export BROWSER=google-chrome
 
