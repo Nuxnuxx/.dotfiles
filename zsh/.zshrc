@@ -92,3 +92,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # chatgpt
 export OPENAI_KEY="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"
+export NPM_CONFIG_PREFIX="~/.npm-global"
