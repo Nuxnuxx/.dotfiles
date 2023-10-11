@@ -2,7 +2,16 @@
 
 read -p "Enter log: " query
 
-selected_commit=$(git log -S $query --oneline | fzf | awk '{print $1}') 
+if [ -z "$query" ]; then
+    selected_commit=$(git log --oneline | fzf | awk '{print $1}')
+else
+    selected_commit=$(git log -S $query --oneline | fzf | awk '{print $1}')
+fi
+
+if [ -z "$selected_commit" ]; then
+    echo "No commit selected."
+    exit 1
+fi
 
 current_path=$(pwd)
 parent_path=$(dirname "$current_path")
