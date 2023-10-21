@@ -83,13 +83,9 @@ bindkey -s '^b' "branch.sh\n"
 export EDITOR=nvim
 export BROWSER=google-chrome
 
-# bun completions
-[ -s "/home/gaetan/.bun/_bun" ] && source "/home/gaetan/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # chatgpt
 export OPENAI_KEY="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"
-export NPM_CONFIG_PREFIX="~/.npm-global"
+
+# npm and node
+export PATH=~/.local/.npm-global/bin:$PATH
+export N_PREFIX=~/.n
