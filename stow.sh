@@ -8,9 +8,9 @@ for dir in */; do
         dir_name=${dir%/}
         
         # Unstow the directory
-        stow -D "$dir_name"
+        stow --adopt -D "$dir_name"
         
         # Stow the directory again
-        stow "$dir_name"
+        stow --adopt "$dir_name"
     fi
 done
