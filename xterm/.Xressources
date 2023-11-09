@@ -6,3 +6,4 @@ XTerm*faceSize: 14.5
 XTerm*VT100.translations: #override \
     Ctrl Shift <Key> C: copy-selection(CLIPBOARD) \n\
     Ctrl Shift <Key> V: insert-selection(CLIPBOARD)
+Xft.dpi: 163
