@@ -8,7 +8,6 @@ exec --no-startup-id killall -SIGUSR1 dunst
 
 exec --no-startup-id xsetroot -solid "#000000"
 exec --no-startup-id xrdb .Xressources
-exec --no-startup-id xrandr --output DP-4  --mode 1920x1080 --rate 60 --right-of eDP-1 --scale 2x2
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 

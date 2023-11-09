@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+echo "Enter your choice university or home (1 or 2):"
+read choice
+
+if [ "$choice" == "1" ]; then
+    xrandr --output DP-4 --mode 1600x900 --rate 60 --right-of eDP-1 --scale 2x2
+elif [ "$choice" == "2" ]; then
+    xrandr --output DP-4 --mode 1600x900 --rate 60 --right-of eDP-1 --scale 2x2
+fi
