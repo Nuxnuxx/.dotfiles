@@ -2,7 +2,7 @@ XTerm*background:   black
 XTerm*foreground:   white
 XTerm*renderFont: true
 XTerm*faceName: CaskaydiaCove Nerd Font
-XTerm*faceSize: 17.5
+XTerm*faceSize: 14.5
 XTerm*VT100.translations: #override \
     Ctrl Shift <Key> C: copy-selection(CLIPBOARD) \n\
     Ctrl Shift <Key> V: insert-selection(CLIPBOARD) \n\
