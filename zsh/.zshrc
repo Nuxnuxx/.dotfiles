@@ -80,6 +80,7 @@ bindkey -s '^k' "chatgpt.sh\n"
 bindkey -s '^k4' "chatgpt.sh "4"\n"
 bindkey -s '^b' "branch.sh\n"
 bindkey -s '^y' "screen\n"
+bindkey -s '^u' "branchV2.sh\n"
 
 export EDITOR=nvim
 export BROWSER=google-chrome
