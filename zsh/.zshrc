@@ -83,7 +83,7 @@ bindkey -s '^y' "screen\n"
 bindkey -s '^u' "branchV2.sh\n"
 
 export EDITOR=nvim
-export BROWSER=google-chrome
+export BROWSER=brave-browser
 
 # chatgpt
 export OPENAI_KEY="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"
