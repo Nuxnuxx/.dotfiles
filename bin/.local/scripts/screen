@@ -4,9 +4,5 @@ echo "Enter your choice university or home or home mom (1 or 2 or 3):"
 read choice
 
 if [ "$choice" == "1" ]; then
-    xrandr --output DP-4 --mode 1600x900 --rate 60 --right-of eDP-1 --scale 2x2
-elif [ "$choice" == "2" ]; then
-    xrandr --output DP-3 --mode 1920x1080 --rate 60 --right-of eDP-1 --scale 2x2
-elif [ "$choice" == "3" ]; then
-    xrandr --output DP-4 --mode 1920x1080 --rate 60 --right-of eDP-1 --scale 2x2
+	xrandr --output DP-3 --mode 1920x1080 --rate 60 --scale 2x2
 fi

@@ -85,9 +85,8 @@ bindkey -s '^u' "branchV2.sh\n"
 export EDITOR=nvim
 export BROWSER=brave-browser
 
-# chatgpt
-export OPENAI_KEY="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"
-
 # npm and node
 export PATH=~/.local/.npm-global/bin:$PATH
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+export PATH=$PATH:/usr/local/go/bin
