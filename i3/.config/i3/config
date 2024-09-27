@@ -15,6 +15,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id setxkbmap us && setxkbmap -option caps:swapescape
 
+exec --no-startup-id vlc /home/gaetan/motivation.mp4
+
+
 set $refresh_i3status killall -SIGUSR1 i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
