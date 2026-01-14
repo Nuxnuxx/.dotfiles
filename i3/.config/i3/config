@@ -4,7 +4,6 @@ font pango:CaskaydiaCove Sans Mono Nerd Font 14.5
 
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id flameshot
-exec --no-startup-id stayfree-desktop
 exec --no-startup-id killall -SIGUSR1 dunst
 
 exec --no-startup-id xsetroot -solid "#000000"
@@ -14,8 +13,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 exec --no-startup-id nm-applet
 exec --no-startup-id setxkbmap us && setxkbmap -option caps:swapescape
-
-exec --no-startup-id vlc /home/gaetan/motivation.mp4
+exec --no-startup-id mpd ~/.config/mpd/mpd.conf
 
 
 set $refresh_i3status killall -SIGUSR1 i3status

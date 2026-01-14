@@ -75,8 +75,7 @@ plugins=(zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
 bindkey -s '^f' "tmux-sessionizer\n"
-bindkey -s '^b' "branch.sh\n"
-bindkey -s '^y' "screen\n"
+bindkey -s '^u' "branchV2.sh\n"
 
 export EDITOR=nvim
 export BROWSER=brave-browser
@@ -84,5 +83,16 @@ export BROWSER=brave-browser
 # npm and node
 export PATH=~/.local/.npm-global/bin:$PATH
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
+
+# bun completions
+[ -s "/home/gaetan/.bun/_bun" ] && source "/home/gaetan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+alias xclip='xclip -selection clipboard'
+
+# opencode
+export PATH=/home/gaetan/.opencode/bin:$PATH
