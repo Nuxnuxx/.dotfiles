@@ -1,11 +1,11 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -70,29 +70,54 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# zsh-autosuggestions
 bindkey '^ ' autosuggest-accept
-bindkey -s '^f' "tmux-sessionizer\n"
-bindkey -s '^u' "branchV2.sh\n"
 
-export EDITOR=nvim
-export BROWSER=brave-browser
+# editor
+export EDITOR="nvim"
+export VISUAL="nvim"
 
-# npm and node
-export PATH=~/.local/.npm-global/bin:$PATH
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-export PATH="$HOME/.config/composer/vendor/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
+# node (n)
+export N_PREFIX="$HOME/n"
 
-# bun completions
-[ -s "/home/gaetan/.bun/_bun" ] && source "/home/gaetan/.bun/_bun"
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# PATH
+export PATH="$HOME/.local/bin:$HOME/.opencode/bin:$N_PREFIX/bin:$HOME/.bun/bin:$PNPM_HOME:/usr/local/go/bin:$PATH"
+
+# xclip: default to clipboard selection
 alias xclip='xclip -selection clipboard'
-
-# opencode
-export PATH=/home/gaetan/.opencode/bin:$PATH

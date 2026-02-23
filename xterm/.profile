@@ -25,6 +25,3 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
-export GDK_SCALE=1
-. "$HOME/.cargo/env"
-export PYTHONPYCACHEPREFIX="${HOME}/.cache/Python"

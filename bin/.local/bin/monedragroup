@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+# Opens a monedragroup repo in a dedicated tmux session with nvim, opencode,
+# and the appropriate dev server.
+
+WORKDIR="$HOME/work/monedragroup"
+
+# ---------------------------------------------------------------------------
+# Repo definitions
+# Each entry: "name|dev_command|question_if_ambiguous"
+# dev_command can be empty (no dev server)
+# ---------------------------------------------------------------------------
+declare -A REPO_DEV=(
+  [infra-korus]=""
+  [korus-landing]=""
+  [korus-admin]="npm run dev"
+  [korus-app]="__korus_app"     # special: docker + composer
+  [korus-mobile]="npx expo start"
+  [korus-ml]=""
+)
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+die() { echo "error: $*" >&2; exit 1; }
+
+list_repos() {
+  for repo in "${!REPO_DEV[@]}"; do echo "$repo"; done | sort
+}
+
+pick_repo() {
+  local repos
+  mapfile -t repos < <(list_repos)
+  echo "Available repos:"
+  printf "  0) all\n"
+  local i=1
+  for r in "${repos[@]}"; do
+    printf "  %d) %s\n" "$i" "$r"
+    ((i++))
+  done
+  printf "Select repo [0-%d]: " "${#repos[@]}"
+  read -r choice
+  if [[ "$choice" == "0" ]]; then
+    echo "all"
+  elif [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#repos[@]} )); then
+    echo "${repos[$((choice-1))]}"
+  else
+    die "invalid selection"
+  fi
+}
+
+tmux_switch_or_attach() {
+  local session="$1"
+  if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$session"
+  else
+    tmux attach-session -t "$session"
+  fi
+}
+
+open_all() {
+  local repos
+  mapfile -t repos < <(list_repos)
+  for repo in "${repos[@]}"; do
+    echo "Opening $repo..."
+    open_repo_detached "$repo"
+  done
+  tmux_switch_or_attach "${repos[0]}"
+}
+
+_setup_session() {
+  local repo="$1"
+  local dir="$WORKDIR/$repo"
+  local dev_cmd="${REPO_DEV[$repo]}"
+  local session="$repo"
+
+  [[ -d "$dir" ]] || die "directory not found: $dir"
+
+  if tmux has-session -t "$session" 2>/dev/null; then
+    echo "Session '$session' already exists, skipping..."
+    return
+  fi
+
+  # --- window 1: nvim ---
+  tmux new-session -d -s "$session" -n "nvim" -c "$dir"
+  tmux send-keys -t "$session:nvim" "nvim ." Enter
+
+  # --- window 2: opencode ---
+  tmux new-window -t "$session" -n "opencode" -c "$dir"
+  tmux send-keys -t "$session:opencode" "opencode" Enter
+
+  # --- window 3: dev server (if any) ---
+  if [[ -n "$dev_cmd" ]]; then
+    tmux new-window -t "$session" -n "dev" -c "$dir"
+    if [[ "$dev_cmd" == "__korus_app" ]]; then
+      tmux send-keys -t "$session:dev" "docker compose up -d && composer run dev" Enter
+    else
+      tmux send-keys -t "$session:dev" "$dev_cmd" Enter
+    fi
+  fi
+
+  tmux select-window -t "$session:nvim"
+}
+
+open_repo_detached() {
+  _setup_session "$1"
+}
+
+open_repo() {
+  local repo="$1"
+  local session="$repo"
+
+  if tmux has-session -t "$session" 2>/dev/null; then
+    echo "Session '$session' already exists, attaching..."
+  else
+    _setup_session "$repo"
+  fi
+
+  tmux_switch_or_attach "$session"
+}
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+REPO="${1:-}"
+
+if [[ -z "$REPO" ]]; then
+  REPO=$(pick_repo)
+fi
+
+if [[ "$REPO" == "all" ]]; then
+  open_all
+elif [[ -z "${REPO_DEV[$REPO]+_}" ]]; then
+  echo "Unknown repo '$REPO'. Available repos:"
+  echo "  all"
+  list_repos
+  exit 1
+else
+  open_repo "$REPO"
+fi

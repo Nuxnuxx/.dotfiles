@@ -10,7 +10,7 @@ order += "cpu_usage"
 order += "memory"
 order += "battery 0"
 order += "volume master"
-order += "tztime paris"
+order += "time"
 
 cpu_usage {
 	format = "CPU %usage"
@@ -24,10 +24,8 @@ battery 0 {
     format = "%status %percentage"
  }
 
-tztime paris {
-        format = "%time"
-        format_time = "%A %d %B %Y %H:%M"
-        timezone = "Europe/Paris"
+time {
+        format = "%A %d %B %Y %H:%M"
 }
 
 volume master {

@@ -9,5 +9,5 @@ XTerm*VT100.translations: #override \
 		Ctrl <Key> minus: smaller-vt-font() \n\
 		Ctrl <Key> plus: larger-vt-font()
 
-Xft.dpi: 192
-Xcursor.size: 96
+Xft.dpi: 96
+Xcursor.size: 24
