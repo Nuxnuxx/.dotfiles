@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+# Simple todo list manager
+# Usage:
+#   todo              - list all tasks
+#   todo <task>       - add a task
+#   todo focus <n>    - mark task n as focused (current)
+#   todo done         - mark focused task as done and remove it
+
+TODO_FILE="$HOME/todo.md"
+
+# Ensure file exists
+touch "$TODO_FILE"
+
+die() { echo "error: $*" >&2; exit 1; }
+
+list_todos() {
+  if [[ ! -s "$TODO_FILE" ]]; then
+    echo "No tasks."
+    return
+  fi
+  local i=1
+  while IFS= read -r line; do
+    if [[ "$line" == "* $line" ]]; then
+      echo "$line"
+    else
+      echo "  $i) $line"
+      ((i++))
+    fi
+  done < "$TODO_FILE"
+}
+
+add_todo() {
+  local task="$*"
+  echo "[ ] $task" >> "$TODO_FILE"
+  echo "Added: $task"
+}
+
+focus_todo() {
+  local n="$1"
+  [[ "$n" =~ ^[0-9]+$ ]] || die "provide a task number"
+
+  local total
+  total=$(wc -l < "$TODO_FILE")
+  (( n >= 1 && n <= total )) || die "invalid task number"
+
+  # Remove existing focus markers
+  sed -i 's/^\[>\]/[ ]/g' "$TODO_FILE"
+
+  # Mark the nth line as focused
+  sed -i "${n}s/^\[ \]/[>]/" "$TODO_FILE"
+
+  local task
+  task=$(sed -n "${n}p" "$TODO_FILE" | sed 's/^\[.\] //')
+  echo "Focused: $task"
+}
+
+done_todo() {
+  # Find focused task
+  local n
+  n=$(grep -n '^\[>\]' "$TODO_FILE" | head -1 | cut -d: -f1)
+
+  if [[ -z "$n" ]]; then
+    die "no focused task. Use: todo focus <n>"
+  fi
+
+  local task
+  task=$(sed -n "${n}p" "$TODO_FILE" | sed 's/^\[.\] //')
+  sed -i "${n}d" "$TODO_FILE"
+  echo "Done: $task"
+}
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+CMD="${1:-}"
+
+case "$CMD" in
+  "")
+    list_todos
+    ;;
+  focus)
+    focus_todo "$2"
+    ;;
+  done)
+    done_todo
+    ;;
+  *)
+    add_todo "$@"
+    ;;
+esac

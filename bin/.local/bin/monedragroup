@@ -28,24 +28,9 @@ list_repos() {
 }
 
 pick_repo() {
-  local repos
-  mapfile -t repos < <(list_repos)
-  echo "Available repos:"
-  printf "  0) all\n"
-  local i=1
-  for r in "${repos[@]}"; do
-    printf "  %d) %s\n" "$i" "$r"
-    ((i++))
-  done
-  printf "Select repo [0-%d]: " "${#repos[@]}"
-  read -r choice
-  if [[ "$choice" == "0" ]]; then
-    echo "all"
-  elif [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#repos[@]} )); then
-    echo "${repos[$((choice-1))]}"
-  else
-    die "invalid selection"
-  fi
+  local choice
+  choice=$(printf "all\n%s" "$(list_repos)" | fzf --prompt="repo > " --height=~10 --border) || die "no repo selected"
+  echo "$choice"
 }
 
 tmux_switch_or_attach() {
